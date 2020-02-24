@@ -16,10 +16,9 @@ jobs:
       run: |
         composer install
         composer global require friendsofphp/php-cs-fixer
+        php security-checker security:check /composer.lock
     - name: Test
       run: |
         bin/phpunit tests/Unit
         bin/phpunit tests/Integration
         php vendor/bin/behat
-    - name: security checker
-      run: php security-checker security:check /composer.lock
