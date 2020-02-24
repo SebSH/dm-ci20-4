@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        composer install
+        composer global require friendsofphp/php-cs-fixer
+    - name: Test
+      run: |
+        bin/phpunit tests/Unit
+        bin/phpunit tests/Integration
+        php vendor/bin/behat
+    - name: fixer
+      run: php php-cs-fixer.phar fix /src
+    - name: security checker
+      run: php security-checker security:check /composer.lock
