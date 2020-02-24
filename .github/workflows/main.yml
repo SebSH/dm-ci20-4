@@ -16,7 +16,7 @@ jobs:
       run: |
         composer install
         composer global require friendsofphp/php-cs-fixer
-        php php-cs-fixer fix /src
+        php php-cs-fixer fix ./vendor/bin/phpcs
     - name: Test
       run: |
         bin/phpunit tests/Unit
