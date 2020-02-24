@@ -16,12 +16,11 @@ jobs:
       run: |
         composer install
         composer global require friendsofphp/php-cs-fixer
+        php php-cs-fixer.phar fix /src
     - name: Test
       run: |
         bin/phpunit tests/Unit
         bin/phpunit tests/Integration
         php vendor/bin/behat
-    - name: fixer
-      run: php php-cs-fixer.phar fix /src
     - name: security checker
       run: php security-checker security:check /composer.lock
