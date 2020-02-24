@@ -17,9 +17,12 @@ jobs:
         composer install
         composer global require friendsofphp/php-cs-fixer
         composer require sensiolabs/security-checker
-        php bin/console security:check
+        
     - name: Test
       run: |
         bin/phpunit tests/Unit
         bin/phpunit tests/Integration
         php vendor/bin/behat
+
+    - name : security
+      run: php bin/console security:check
