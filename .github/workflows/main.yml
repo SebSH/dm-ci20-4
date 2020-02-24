@@ -16,7 +16,8 @@ jobs:
       run: |
         composer install
         composer global require friendsofphp/php-cs-fixer
-        php security-checker security:check /composer.lock
+        composer require sensiolabs/security-checker
+        php bin/console security:check
     - name: Test
       run: |
         bin/phpunit tests/Unit
